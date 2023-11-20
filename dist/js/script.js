@@ -436,8 +436,107 @@ let addBtn = document.querySelector(".add");
 let closesvgs = document.querySelectorAll(".close");
 let checkboxes = document.querySelectorAll("#default-checkbox");
 
+// Function to add event listeners to a task
+function addTaskEventListeners(task) {
+  let checkbox = task.querySelector(".form-check-input");
+  let closeSvg = task.querySelector(".close");
+
+  checkbox.addEventListener("click", function () {
+    // Handle checkbox click
+    if (checkbox.checked === true) {
+      let s = document.createElement("s");
+      let closestP = checkbox.closest(".task").querySelector("p");
+
+      s.textContent = closestP.textContent;
+      closestP.textContent = "";
+      closestP.appendChild(s);
+      closestP.style.color = "#b7b7b7";
+    } else {
+      let closestP = checkbox.closest(".task").querySelector("p");
+      let s = checkbox.closest(".task").querySelector("p").querySelector("s");
+      closestP.style.color = "black";
+      closestP.textContent = s.textContent;
+      s.remove();
+    }
+  });
+
+  closeSvg.addEventListener("click", function () {
+    // Handle close button click
+    closeSvg.closest(".task").remove();
+  });
+}
+
+addBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  let taskInput = document.querySelector("#taskInput");
+
+  if (taskInput.value.length > 0) {
+    // Create the main div element
+    let task = document.createElement("div");
+    task.classList.add("flex", "mb-5", "task");
+
+    // Create the checkbox element
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add(
+      "ml-3",
+      "form-check-input",
+      "w-4",
+      "h-4",
+      "text-blue-600",
+      "bg-gray-100",
+      "border-gray-300",
+      "rounded",
+      "focus:ring-blue-500",
+      "dark:focus:ring-blue-600",
+      "dark:ring-offset-gray-800",
+      "focus:ring-2",
+      "dark:bg-gray-700",
+      "dark:border-gray-600"
+    );
+
+    // Create the task title paragraph element
+    let taskTitle = document.createElement("p");
+    taskTitle.classList.add("ml-auto", "taskTitle");
+    taskTitle.textContent = taskInput.value;
+
+    // Create the close button (SVG) element
+    let closeSvg = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    closeSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    closeSvg.setAttribute("width", "16");
+    closeSvg.setAttribute("height", "16");
+    closeSvg.setAttribute("fill", "currentColor");
+    closeSvg.classList.add("bi", "bi-x", "close");
+    closeSvg.setAttribute("viewBox", "0 0 16 16");
+
+    let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute(
+      "d",
+      "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+    );
+
+    // Append elements to the main div
+    closeSvg.appendChild(path);
+    task.appendChild(checkbox);
+    task.appendChild(taskTitle);
+    task.appendChild(closeSvg);
+
+    document.querySelector(".tasks").appendChild(task);
+    taskInput.value = "";
+
+    // Add event listeners to the newly created task
+    addTaskEventListeners(task);
+  }
+});
+
+// Add initial event listeners to existing checkboxes and close buttons
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", function () {
+    // Existing checkbox click handler
+    // if checkbox chcecked cross out and change the color
     if (checkbox.checked === true) {
       let s = document.createElement("s");
       let closestP = checkbox.closest(".task").querySelector("p");
@@ -458,13 +557,8 @@ checkboxes.forEach((checkbox) => {
 });
 
 closesvgs.forEach((closesvg) => {
-  closesvg.addEventListener(`click`, function () {
+  closesvg.addEventListener("click", function () {
+    // Existing close button click handler
     closesvg.closest(".task").remove();
   });
-});
-
-addBtn.addEventListener(`click`, function (event) {
-  event.preventDefault();
-
-  console.log("hi");
 });

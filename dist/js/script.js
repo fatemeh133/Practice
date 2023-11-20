@@ -436,22 +436,19 @@ let addBtn = document.querySelector(".add");
 let closesvgs = document.querySelectorAll(".close");
 let checkboxes = document.querySelectorAll("#default-checkbox");
 
-// Function to add event listeners to a task
-function addTaskEventListeners(task) {
-  let checkbox = task.querySelector(".form-check-input");
-  let closeSvg = task.querySelector(".close");
-
+checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", function () {
-    // Handle checkbox click
+    // if checkbox chcecked cross out and change the color
     if (checkbox.checked === true) {
       let s = document.createElement("s");
       let closestP = checkbox.closest(".task").querySelector("p");
 
-      s.textContent = closestP.textContent;
-      closestP.textContent = "";
+      s.textContent = closestP.textContent; // Copy the text content
+      closestP.textContent = ""; // Clear the text content
       closestP.appendChild(s);
       closestP.style.color = "#b7b7b7";
-    } else {
+    }
+    if (checkbox.checked === false) {
       let closestP = checkbox.closest(".task").querySelector("p");
       let s = checkbox.closest(".task").querySelector("p").querySelector("s");
       closestP.style.color = "black";
@@ -459,14 +456,16 @@ function addTaskEventListeners(task) {
       s.remove();
     }
   });
+});
 
-  closeSvg.addEventListener("click", function () {
-    // Handle close button click
-    closeSvg.closest(".task").remove();
+// delete task rows by x svg
+closesvgs.forEach((closesvg) => {
+  closesvg.addEventListener(`click`, function () {
+    closesvg.closest(".task").remove();
   });
-}
+});
 
-addBtn.addEventListener("click", function (event) {
+addBtn.addEventListener(`click`, function (event) {
   event.preventDefault();
   let taskInput = document.querySelector("#taskInput");
 
@@ -477,7 +476,9 @@ addBtn.addEventListener("click", function (event) {
 
     // Create the checkbox element
     let checkbox = document.createElement("input");
+    checkbox.id = "default-checkbox";
     checkbox.type = "checkbox";
+    checkbox.value = "";
     checkbox.classList.add(
       "ml-3",
       "form-check-input",
@@ -526,39 +527,5 @@ addBtn.addEventListener("click", function (event) {
 
     document.querySelector(".tasks").appendChild(task);
     taskInput.value = "";
-
-    // Add event listeners to the newly created task
-    addTaskEventListeners(task);
   }
-});
-
-// Add initial event listeners to existing checkboxes and close buttons
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener("click", function () {
-    // Existing checkbox click handler
-    // if checkbox chcecked cross out and change the color
-    if (checkbox.checked === true) {
-      let s = document.createElement("s");
-      let closestP = checkbox.closest(".task").querySelector("p");
-
-      s.textContent = closestP.textContent; // Copy the text content
-      closestP.textContent = ""; // Clear the text content
-      closestP.appendChild(s);
-      closestP.style.color = "#b7b7b7";
-    }
-    if (checkbox.checked === false) {
-      let closestP = checkbox.closest(".task").querySelector("p");
-      let s = checkbox.closest(".task").querySelector("p").querySelector("s");
-      closestP.style.color = "black";
-      closestP.textContent = s.textContent;
-      s.remove();
-    }
-  });
-});
-
-closesvgs.forEach((closesvg) => {
-  closesvg.addEventListener("click", function () {
-    // Existing close button click handler
-    closesvg.closest(".task").remove();
-  });
 });

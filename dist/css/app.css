@@ -2297,9 +2297,9 @@ video {
 }
 
 .form-check-input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  border-radius: 0.2em;
+  width: 22px;
+  height: 22px;
+  border-radius: 1.2em;
   position: relative;
   cursor: pointer;
   -webkit-appearance: none;
@@ -18065,4 +18065,11 @@ input.form-error:required:empty {
   background-color: #eaeff3;
   border-radius: 13px;
   padding: 11px 17px 11px 11px;
+}
+.close {
+  color: #b7b7b7;
+}
+.close:hover {
+  cursor: pointer;
+  color: black;
 }

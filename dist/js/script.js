@@ -592,8 +592,10 @@ input.addEventListener(`focus`, function () {
 });
 
 input.addEventListener(`blur`, function () {
-  label.style.color = "";
-  label.style.transform = "";
+  if (input.value.length === 0) {
+    label.style.color = "";
+    label.style.transform = "";
+  }
 });
 
 input.addEventListener(`input`, function () {

@@ -9,7 +9,7 @@
     <meta name="description" content="انبارداری روزنه" />
     <meta name="keywords" content="انبارداری روزنه" />
     <meta name="author" content="Hosseini" />
-    <title>لیست دوره های انبار گردانی</title>
+    <title>Practice</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <!-- END: CSS Assets-->
@@ -23,9 +23,8 @@
         <div class="top-bar">
           <!-- BEGIN: Breadcrumb -->
           <div class="-intro-x breadcrumb ml-auto hidden sm:flex">
-            <a href="" class="ml-5">لیست کار ها</a>
-
-            <a href="">فرم</a>
+            <a href="" class="ml-5 form-menu">فرم</a>
+            <a href="" class="ml-5 todo-menu">لیست کار ها</a>
           </div>
           <!-- END: Breadcrumb -->
         </div>
@@ -35,14 +34,14 @@
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
           <div class="intro-y col-span-12 lg:col-span-12">
-            <form id="filterForm" action="" method="" style="max-width: 27%">
+            <form id="todoList" action="" method="" style="max-width: 27%">
               <!-- BEGIN: Form Layout -->
-              <div class="intro-y box p-5">
+              <div class="intro-y box p-5 mb-5">
                 <div class="margin-buttom">
                   <div class="form-group">
                     <input
                       id="taskInput"
-                      class="form-control input-floating mb-5"
+                      class="form-control mb-5"
                       type="text"
                       autocomplete="off"
                       placeholder="وظیفه ای را وارد کنید"
@@ -110,7 +109,66 @@
             </form>
           </div>
         </div>
+        <!-- starrrrrrrrrrrrrrrrrrrt  -->
+        <div id="form-section" class="intro-y box p-5 mb-5">
+          <div class="intro-y flex items-center mb-6 pb-2">
+            <h2 class="text-lg font-medium ml-auto">سربرگ فاکتور</h2>
+          </div>
+          <form
+            id="myForm"
+            action="https://formspree.io/f/xleybyvq"
+            method="POST"
+          >
+            <div>
+              <div class="sm:grid grid-cols-2 gap-6">
+                <div class="floating-part mb-5">
+                  <label
+                    for="factor-Number"
+                    id="crud-form-1"
+                    class="form-label label-floating"
+                    >شماره فاکتور</label
+                  >
+                  <input
+                    id="factor-Number"
+                    type="number"
+                    class="form-control w-full custom-input input-floating"
+                    name="Factor Number"
+                    min="0"
+                  />
+                </div>
+                <!-- <div class="floating-part mb-5">
+                  <label
+                    for="factor-Number"
+                    id="crud-form-1"
+                    class="form-label label-floating"
+                    >تاریخ
+                  </label>
+                  <input
+                    id="factor-Number"
+                    type="number"
+                    class="form-control w-full custom-input input-floating"
+                    
+                    name="Factor Number"
+                    min="0"
+                  />
+                </div> -->
+              </div>
+            </div>
 
+            <div class="text-left">
+              <button
+                type="reset"
+                id="cancelButton"
+                class="btn btn-outline-secondary w-24 ml-1"
+              >
+                لغو
+              </button>
+              <input type="submit" value="ذخیره" class="btn btn-primary w-24" />
+            </div>
+          </form>
+
+          <!-- END: Form Layout -->
+        </div>
         <!-- BEGIN: Delete Confirmation Modal -->
         <div
           id="delete-confirmation-modal"

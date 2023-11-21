@@ -562,3 +562,46 @@ closesvgs.forEach((closesvg) => {
     closesvg.closest(".task").remove();
   });
 });
+
+// todo list form
+let todoForm = document.querySelector("#todoList");
+let formSection = document.querySelector("#form-section");
+let todolink = document.querySelector(".todo-menu");
+let formlink = document.querySelector(".form-menu");
+
+todoForm.style.display = "none";
+todolink.addEventListener(`click`, function (event) {
+  event.preventDefault();
+  todoForm.style.display = "block";
+  formSection.style.display = "none";
+});
+
+formlink.addEventListener(`click`, function (event) {
+  event.preventDefault();
+  formSection.style.display = "block";
+  todoForm.style.display = "none";
+});
+
+// floating label
+let label = document.querySelector(".label-floating");
+let input = document.querySelector(".input-floating");
+
+input.addEventListener(`focus`, function () {
+  label.style.color = "black";
+  label.style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
+});
+
+input.addEventListener(`blur`, function () {
+  label.style.color = "";
+  label.style.transform = "";
+});
+
+input.addEventListener(`input`, function () {
+  if (input.value.length > 0) {
+    label.style.color = "black";
+    label.style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
+  } else {
+    label.style.color = "";
+    label.style.transform = "";
+  }
+});

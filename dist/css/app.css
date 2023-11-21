@@ -17982,37 +17982,6 @@ mark.p-1.bg-yellow-200 {
   }
 }
 
-/* inputs */
-.form-group {
-  position: relative;
-}
-
-.input-floating {
-  padding: 1rem 0.4rem 0.3rem 0.4rem;
-}
-.label-floating {
-  position: absolute;
-  top: 16px;
-  right: 12px;
-  text-align: left;
-  display: inline-block;
-  padding: 0 4px;
-  height: 14px;
-  line-height: 14px;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
-  margin: 0px auto;
-  cursor: text;
-  transition: all 0.15s ease-in-out;
-}
-.label-floating:focus,
-.input-floating:focus + .label-floating {
-  top: 5px;
-  color: #000;
-  transform: translate3d(0, 0rem, 0) scale3d(0.8, 0.8, 0.8);
-}
-
 .gl-form-asterisk {
   background-color: inherit;
   color: #e32b2b;
@@ -18072,4 +18041,21 @@ input.form-error:required:empty {
 .close:hover {
   cursor: pointer;
   color: black;
+}
+
+.floating-part {
+  position: relative;
+}
+
+.label-floating {
+  position: absolute;
+  top: 20%;
+  right: 2%;
+  z-index: 1;
+  color: rgb(219, 27, 27);
+  transition: transform 0.2s ease-in-out;
+}
+.label-floating:hover {
+  color: black;
+  transform: scale3d(0.7, 0.7, 5) translate(0%, -75%);
 }

@@ -583,27 +583,33 @@ formlink.addEventListener(`click`, function (event) {
 });
 
 // floating label
-let label = document.querySelector(".label-floating");
-let input = document.querySelector(".input-floating");
+let label = document.querySelectorAll(".label-floating");
+let input = document.querySelectorAll(".input-floating");
 
-input.addEventListener(`focus`, function () {
-  label.style.color = "black";
-  label.style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
-});
+for (let i = 0; i < input.length; i++) {
+  input[i].addEventListener(`focus`, function () {
+    label[i].style.color = "black";
+    label[i].style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
+  });
+}
 
-input.addEventListener(`blur`, function () {
-  if (input.value.length === 0) {
-    label.style.color = "";
-    label.style.transform = "";
-  }
-});
+for (let i = 0; i < input.length; i++) {
+  input[i].addEventListener(`blur`, function () {
+    if (input[i].value.length === 0) {
+      label[i].style.color = "";
+      label[i].style.transform = "";
+    }
+  });
+}
 
-input.addEventListener(`input`, function () {
-  if (input.value.length > 0) {
-    label.style.color = "black";
-    label.style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
-  } else {
-    label.style.color = "";
-    label.style.transform = "";
-  }
-});
+for (let i = 0; i < input.length; i++) {
+  input[i].addEventListener(`input`, function () {
+    if (input[i].value.length > 0) {
+      label[i].style.color = "black";
+      label[i].style.transform = "scale3d(0.7, 0.7, 5) translate(0%, -75%)";
+    } else {
+      label[i].style.color = "";
+      label[i].style.transform = "";
+    }
+  });
+}

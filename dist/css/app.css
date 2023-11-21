@@ -18052,7 +18052,7 @@ input.form-error:required:empty {
   top: 20%;
   right: 2%;
   z-index: 1;
-  color: rgb(219, 27, 27);
+  color: rgb(123, 123, 123);
   transition: transform 0.2s ease-in-out;
 }
 .label-floating:hover {
